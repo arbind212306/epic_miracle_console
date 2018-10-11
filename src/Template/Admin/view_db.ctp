@@ -1,4 +1,4 @@
-<?php /*pr($client_list); die();*/?>
+<?php /*pr($db_list); die();*/?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -10,7 +10,7 @@
       <div class="box box-primary">
       <div class="row">
           <div class="box-header with-border">
-              <h3 class="box-title" style="margin-left: 10px;">View clients</h3>
+              <h3 class="box-title" style="margin-left: 10px;">View Databases</h3>
             </div>
           </div>
     
@@ -30,35 +30,32 @@
             <table class="table table-striped" id="report_table" >
                 <thead>
                 <tr>
-                    <th>Client Type</th>
-                    <th>Client Name</th>
-                    <th>Mobile No</th>
-                    <th>Logo</th>
+                    <th>Client Id</th>
+                    <th>Service Id</th>
+                    <th>DB Name</th>
+                    <th>Host Name</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                     
-            <?php foreach ($client_list as $client_lists) {?>
+            <?php foreach ($db_list as $db_lists) {?>
               <tr>
-                    <td><?php echo $client_lists['client_type']?></td>
-                    <td><?php echo $client_lists['client_name']?></td>
-                    <td><?php echo $client_lists['mobile']?></td>
-                    <td><?php $image = $client_lists['logo'];   
-                    echo $this->Html->image("../webroot/upload/$image", array('alt' => '', 'style' => 'width:70px')); 
-
-                     ?></td>
+                    <td><?php echo $db_lists['client_id']?></td>
+                    <td><?php echo $db_lists['service_id']?></td>
+                    <td><?php echo $db_lists['db_name']?></td>
+                    <td><?php echo $db_lists['host_name']?></td>
                     <td>
                         
                          <!-- <button type="button" class="btn btn-primary btn-sm" data-sidebar-button onclick="return editclient('<?php echo $client_lists['client_id'];?>')"><i class="fa fa-pencil"></i> Edit</button> -->
-                          <i class="fa fa-edit" title="Edit client details"  data-toggle="modal" data-target="#edituser"  onclick="return editclient('<?php echo $client_lists['client_id'];?>')"></i>
-                         <i class="fa fa-eye" data-toggle="modal" data-target="#viewuser" title="View client details"  onclick="return viewclient('<?php echo $client_lists['client_id'];?>')"></i>
-                          <?php if($client_lists['status'] == 1){?>
-                          <i class="fa fa-toggle-on" title="Disable User"  onclick="return  disableuser('<?php echo $client_lists['client_id']?>');"></i>
+                          <i class="fa fa-edit" title="Edit client details"   onclick="return editclient('<?php echo $db_lists['db_id'];?>')"></i>
+                         <i class="fa fa-eye"  title="View client details"  onclick="return viewclient('<?php echo $db_lists['db_id'];?>')"></i>
+                          <?php if($db_lists['status'] == 1){?>
+                          <i class="fa fa-toggle-on" title="Disable User"  onclick="return  disableuser('<?php echo $db_lists['db_id']?>');"></i>
                         <?php } else{?>
-                        <i class="fa fa-toggle-off" title="Enable User"  onclick="return enableuser('<?php echo $client_lists['client_id']?>');"></i>
+                        <i class="fa fa-toggle-off" title="Enable User"  onclick="return enableuser('<?php echo $db_lists['db_id']?>');"></i>
                         <?php } ?>
-                         <i class="fa fa-trash-o" data-toggle="modal" title="Delete client"onclick="return deleteclient('<?php echo  $client_lists['client_id'];?>')"></i>
+                         <i class="fa fa-trash-o"  title="Delete client"onclick="return deleteclient('<?php echo  $db_lists['db_id'];?>')"></i>
                          <!--  <button type="button" class="btn btn-danger btn-sm" data-sidebar-button onclick="return deleteclient('<?php echo  $client_lists['client_id'];?>')"><i class="fa fa-trash-o"></i> Delete</button>  -->            
 
                     </td>

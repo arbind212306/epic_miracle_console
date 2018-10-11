@@ -1,5 +1,6 @@
 
 
+<!-- header section ends here -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -9,8 +10,10 @@
         <li class="active">Dashboard</li>
       </ol>-->
     </section>
+<!-- Left side column. contains the logo and sidebar -->
 
-     <!-- Main content -->
+ 
+
     <section class="content">
             <div class="box box-primary">
              <!-- <form action="" name="myForm"  method="post" enctype = "multipart/form-data" onsubmit="return(validate());"> -->
@@ -18,9 +21,23 @@
               <h3 class="box-title text-center" style="margin-left: 10px;">Add Client</h3>
             </div> 
       <div class="row">
-        <?php echo $this->Form->create('',(['id' => 'add_user','enctype'=>'multipart/form-data']));?>
-        
+          <?php $flash_message = $this->Flash->render() ?>
+    <?php if (!empty(@$flash_message)) { ?>
+    <div class="col-md-10 col-sm-12 col-xs-12">
+    <div class="alert alert-success alert-dismissible" style="text-align:center;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Record has been  successfully inserted.</h4>
+               </div>
+              </div>
+       
+       
+    <?php } ?>
           
+          
+         
+           <?= $this->Form->create('Clientmasters', array('url' => array('controller' => 'Admin', 'action' => 'clientAdd'), 'enctype' => 'multipart/form-data', 'id' => 'add_user')); ?>
+          
+        
 	    
         <!-- left column -->
        <div class="col-md-12 " >
@@ -48,7 +65,7 @@
                     <input type="text" id="client_name"  name="client_name" class="form-control"  placeholder="">
                 <span class="error_label" id="check_client_name"></span>
                           </div>
-				<div class="form-group">
+				<div class="form-group" style="padding-top:50px;">
                   <label for="industry_name">Industry Name</label>
                   <input type="text" id="industry_name" name="industry_name" class="form-control" placeholder="">
                   <span class="error_label" id="check_industry_name"></span>
@@ -133,8 +150,7 @@
                   <input type="text" name="website" class="form-control" id="website" placeholder="">
                   <span class="error_label" id="check_website"></span>
                 </div>
-                
-			  <div class="form-group">
+                <div class="form-group">
                 <label>Services Need</label>
                 <select class="form-control select2" id="service_needed" multiple="multiple" name="service_needed[]"  data-placeholder="Select a State" style="width: 100%;">
                   <?php echo $service_lists; ?>
@@ -143,7 +159,8 @@
                  <?php // } ?> 
                 </select>
                 <span class="error_label" id="check_user_type"></span>
-              </div>
+              </div> 
+			 
                  
 			  <div class="form-group">
                   <label for="address1">Company Address</label>
@@ -220,336 +237,370 @@
    
   </div>
   <!-- /.content-wrapper -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   <script type="text/javascript">
-   var valid = false;
-     var value = 0;
-	 $(document).ready(function() {
-    $('#myForm').click(function(){
-      
-      
-        if($('#client_name').val()=='')
-    {   
-        $('#client_name').css('border','1px solid red');
-        $('#check_client_name').text('Please enter Client Name');
-        $('#check_client_name').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#client_name').css('border','1px solid #cccccc');
-        $('#check_client_name').text('');
-    }
-
-
-     
-     if(($('#industry_name').val()=='')) 
-    {   
-        $('#industry_name').css('border','1px solid red');
-        $('#check_industry_name').text('Please enter industry name ');
-        $('#check_industry_name').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#industry_name').css('border','1px solid #cccccc');
-        $('#check_industry_name').text('');
-    }
-	
-    
-    if($('#client_type').val()=='')
-    {   
-        $('#client_type').css('border','1px solid red');
-        $('#check_client_type').text('Please enter client Type');
-        $('#check_client_type').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#client_type').css('border','1px solid #cccccc');
-        $('#check_client_type').text('');
-    }
-
-    if($('#bu').val()=='')
-    {   
-        $('#bu').css('border','1px solid red');
-        $('#check_bu').text('Please enter  Business Name');
-        $('#check_bu').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#bu').css('border','1px solid #cccccc');
-        $('#check_bu').text('');
-    }
-
-     if(($('#email_id').val()=='')) 
-    {   
-        $('#email_id').css('border','1px solid red');
-        $('#check_email_id').text('Please Enter email id');
-        $('#check_email_id').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#email_id').css('border','1px solid #cccccc');
-        $('#check_email_id').text('');
-    }
-    
-    
-    
-    
-    if($('#phone').val()=='')
-    {   
-        $('#phone').css('border','1px solid red');
-        $('#check_phone').text('Please enter phone');
-        $('#check_phone').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#phone').css('border','1px solid #cccccc');
-        $('#check_phone').text('');
-    }
-
-
-     
-     if(($('#fax').val()=='')) 
-    {   
-        $('#fax').css('border','1px solid red');
-        $('#check_fax').text('Please enter industry name ');
-        $('#check_fax').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#fax').css('border','1px solid #cccccc');
-        $('#check_fax').text('');
-    }
-	
-    
-    if($('#client_code').val()=='')
-    {   
-        $('#client_code').css('border','1px solid red');
-        $('#check_client_code').text('Please enter client Code');
-        $('#check_client_code').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#client_code').css('border','1px solid #cccccc');
-        $('#check_client_code').text('');
-    }
-
-
-    
-    
-    
-    if($('#cp_name').val()=='')
-    {   
-        $('#cp_name').css('border','1px solid red');
-        $('#check_cp_name').text('Please enter  Contact Person Name');
-        $('#check_cp_name').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#cp_name').css('border','1px solid #cccccc');
-        $('#check_cp_name').text('');
-    }
-
-
-     
-     if(($('#cp_mobile').val()=='')) 
-    {   
-        $('#cp_mobile').css('border','1px solid red');
-        $('#check_cp_mobile').text('Please enter  Contact Person Mobile');
-        $('#check_cp_mobile').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#cp_mobile').css('border','1px solid #cccccc');
-        $('#check_cp_mobile').text('');
-    }
-    
-	
-     if(($('#description').val()=='')) 
-    {   
-        $('#description').css('border','1px solid red');
-        $('#check_description').text('Please enter Description ');
-        $('#check_description').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#description').css('border','1px solid #cccccc');
-        $('#check_description').text('');
-    }
-	
-    
-    if($('#status').val()=='')
-    {   
-        $('#status').css('border','1px solid red');
-        $('#check_status').text('Please enter Status');
-        $('#check_status').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#status').css('border','1px solid #cccccc');
-        $('#check_status').text('');
-    }
-
-
-    if($('#website').val()=='')
-    {   
-        $('#website').css('border','1px solid red');
-        $('#check_website').text('Please enter  website');
-        $('#check_website').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#website').css('border','1px solid #cccccc');
-        $('#check_website').text('');
-    }
-
-
-	if($('#address1').val()=='')
-    {   
-        $('#address1').css('border','1px solid red');
-        $('#check_address1').text('Please enter Address1');
-        $('#check_address1').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#address1').css('border','1px solid #cccccc');
-        $('#check_address1').text('');
-    }
-
-
-     
-     if(($('#address2').val()=='')) 
-    {   
-        $('#address2').css('border','1px solid red');
-        $('#check_address2').text('Please enter Address2 ');
-        $('#check_address2').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#address2').css('border','1px solid #cccccc');
-        $('#check_address2').text('');
-    }
-	
-    
-    if($('#city').val()=='')
-    {   
-        $('#city').css('border','1px solid red');
-        $('#check_city').text('Please enter City');
-        $('#check_city').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#city').css('border','1px solid #cccccc');
-        $('#check_city').text('');
-    }
-
-
-    
-    
-    
-    if($('#state').val()=='')
-    {   
-        $('#state').css('border','1px solid red');
-        $('#check_state').text('Please enter  state');
-        $('#check_state').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#state').css('border','1px solid #cccccc');
-        $('#check_state').text('');
-    }
-
-
-     
-     if(($('#country').val()=='')) 
-    {   
-        $('#country').css('border','1px solid red');
-        $('#check_country').text('Please enter Country');
-        $('#check_country').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#country').css('border','1px solid #cccccc');
-        $('#check_country').text('');
-    }
-    
-	if($('#zip').val()=='')
-    {   
-        $('#zip').css('border','1px solid red');
-        $('#check_zip').text('Please enter zip');
-        $('#check_zip').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#zip').css('border','1px solid #cccccc');
-        $('#check_zip').text('');
-    }
-
-
-     
-     if(($('#created_by').val()=='')) 
-    {   
-        $('#created_by').css('border','1px solid red');
-        $('#check_created_by').text('Please enter Created By ');
-        $('#check_created_by').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#created_by').css('border','1px solid #cccccc');
-        $('#check_created_by').text('');
-    }
-	
-    
-    if($('#activation_date').val()=='')
-    {   
-        $('#activation_date').css('border','1px solid red');
-        $('#check_activation_date').text('Please enter Activation Date');
-        $('#check_activation_date').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#activation_date').css('border','1px solid #cccccc');
-        $('#check_activation_date').text('');
-    }
-
-
-    
-    
-    
-    if($('#deactivation_date').val()=='')
-    {   
-        $('#deactivation_date').css('border','1px solid red');
-        $('#check_deactivation_date').text('Please enter  Deactivation Date');
-        $('#check_deactivation_date').addClass('error_label');
-        valid = false;
-    }
-    else {
-        $('#deactivation_date').css('border','1px solid #cccccc');
-        $('#check_deactivation_date').text('');
-    }
-
-    if($('#cp_email_id').val() == ''){
-	$('#cp_email_id').css('border','1px solid red');
-        $('#check_cp_email_id').text('Please enter Contact Person Email ID');
-        $('#check_cp_email_id').addClass('error_label');
-        valid = false;
-	}
-	else{
-	$('#cp_email_id').css('border','1px solid #cccccc');
-        $('#check_cp_email_id').text('');
-	}
-    
-	 if(valid == true)
+   
+  
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+ 
+<!-- ./wrapper -->
+<?= $this->Html->script('jquery.min'); ?>
+ <script type="text/javascript">
+   $('#myForm').click(function(){
+    var valid = true;
+if($('#client_name').val()=='')
+  {
+    $('#client_name').css('border','1px solid red');
+    $('#check_client_name').text('Please enter Client Name ');
+    $('#check_client_name').addClass('error_label');
+    valid = false;
+    $('#client_name').focus();
+  }
+ else
+  {
+    $('#client_name').css('border','1px solid #cccccc');   
+    $('#check_client_name').text('');
+   }
+   if($('#industry_name').val()=='')
     {
-     $('#add_user').submit();
-    }
-    else
+    $('#industry_name').css('border','1px solid red');
+    $('#check_industry_name').text('Please enter industry Name ');
+    $('#check_industry_name').addClass('error_label');
+    valid = false;
+    $('#industry_name').focus();
+  }
+ else
+  {
+    $('#industry_name').css('border','1px solid #cccccc');   
+    $('#check_industry_name').text('');
+   }
+   
+   
+   
+   if($('#phone').val()=='')
+  {
+    $('#phone').css('border','1px solid red');
+    $('#check_phone').text('Please enter phone ');
+    $('#check_phone').addClass('error_label');
+    valid = false;
+    $('#phone').focus();
+  }
+ else
+  {
+    $('#phone').css('border','1px solid #cccccc');   
+    $('#check_phone').text('');
+   }
+   if($('#fax').val()=='')
     {
-      return false;
-     
-    }
-	      });
-    
-   });
+    $('#fax').css('border','1px solid red');
+    $('#check_fax').text('Please enter fax ');
+    $('#check_fax').addClass('error_label');
+    valid = false;
+    $('#fax').focus();
+  }
+ else
+  {
+    $('#fax').css('border','1px solid #cccccc');   
+    $('#check_fax').text('');
+   }
+   
+   
+   if($('#client_code').val()=='')
+  {
+    $('#client_code').css('border','1px solid red');
+    $('#check_client_code').text('Please enter Client Code ');
+    $('#check_client_code').addClass('error_label');
+    valid = false;
+    $('#client_code').focus();
+  }
+ else
+  {
+    $('#client_code').css('border','1px solid #cccccc');   
+    $('#check_client_code').text('');
+   }
+   if($('#cp_name').val()=='')
+    {
+    $('#cp_name').css('border','1px solid red');
+    $('#check_cp_name').text('Please enter Contact Person Name ');
+    $('#check_cp_name').addClass('error_label');
+    valid = false;
+    $('#cp_name').focus();
+  }
+ else
+  {
+    $('#cp_name').css('border','1px solid #cccccc');   
+    $('#check_cp_name').text('');
+   }
+   
+   
+   
+   if($('#cp_mobile').val()=='')
+  {
+    $('#cp_mobile').css('border','1px solid red');
+    $('#check_cp_mobile').text('Please enter Contact Person mobile ');
+    $('#check_cp_mobile').addClass('error_label');
+    valid = false;
+    $('#cp_mobile').focus();
+  }
+ else
+  {
+    $('#cp_mobile').css('border','1px solid #cccccc');   
+    $('#check_cp_mobile').text('');
+   }
+   if($('#description').val()=='')
+    {
+    $('#description').css('border','1px solid red');
+    $('#check_description').text('Please enter Description ');
+    $('#check_description').addClass('error_label');
+    valid = false;
+    $('#description').focus();
+  }
+ else
+  {
+    $('#description').css('border','1px solid #cccccc');   
+    $('#check_description').text('');
+   }
+   
+  
+   if($('#bu').val()=='')
+    {
+    $('#bu').css('border','1px solid red');
+    $('#check_bu').text('Please enter Business Unit ');
+    $('#check_bu').addClass('error_label');
+    valid = false;
+    $('#bu').focus();
+  }
+ else
+  {
+    $('#bu').css('border','1px solid #cccccc');   
+    $('#check_bu').text('');
+   }
+   
+   
+   
+   if($('#email_id').val()=='')
+  {
+    $('#email_id').css('border','1px solid red');
+    $('#check_email_id').text('Please enter email Address ');
+    $('#check_email_id').addClass('error_label');
+    valid = false;
+    $('#email_id').focus();
+  }
+ else
+  {
+    $('#email_id').css('border','1px solid #cccccc');   
+    $('#check_email_id').text('');
+   }
+   if($('#cp_email_id').val()=='')
+    {
+    $('#cp_email_id').css('border','1px solid red');
+    $('#check_cp_email_id').text('Please enter Contact Person email id ');
+    $('#check_cp_email_id').addClass('error_label');
+    valid = false;
+    $('#cp_email_id').focus();
+  }
+ else
+  {
+    $('#cp_email_id').css('border','1px solid #cccccc');   
+    $('#check_cp_email_id').text('');
+   }
+   
+   
+  
+   if($('#website').val()=='')
+    {
+    $('#website').css('border','1px solid red');
+    $('#check_website').text('Please enter Website');
+    $('#check_website').addClass('error_label');
+    valid = false;
+    $('#website').focus();
+  }
+ else
+  {
+    $('#website').css('border','1px solid #cccccc');   
+    $('#check_website').text('');
+   }
+   
+   
+   
+   if($('#address1').val()=='')
+  {
+    $('#address1').css('border','1px solid red');
+    $('#check_address1').text('Please enter address1 ');
+    $('#check_address1').addClass('error_label');
+    valid = false;
+    $('#address1').focus();
+  }
+ else
+  {
+    $('#address1').css('border','1px solid #cccccc');   
+    $('#check_address1').text('');
+   }
+   if($('#city').val()=='')
+    {
+    $('#city').css('border','1px solid red');
+    $('#check_city').text('Please enter city ');
+    $('#check_city').addClass('error_label');
+    valid = false;
+    $('#city').focus();
+  }
+ else
+  {
+    $('#city').css('border','1px solid #cccccc');   
+    $('#check_city').text('');
+   }
+   
+   if($('#state').val()=='')
+  {
+    $('#state').css('border','1px solid red');
+    $('#check_state').text('Please enter State ');
+    $('#check_state').addClass('error_label');
+    valid = false;
+    $('#state').focus();
+  }
+ else
+  {
+    $('#state').css('border','1px solid #cccccc');   
+    $('#check_state').text('');
+   }
+   if($('#country').val()=='')
+    {
+    $('#country').css('border','1px solid red');
+    $('#check_country').text('Please enter country ');
+    $('#check_country').addClass('error_label');
+    valid = false;
+    $('#country').focus();
+  }
+ else
+  {
+    $('#country').css('border','1px solid #cccccc');   
+    $('#check_country').text('');
+   }
+   
+   
+   
+   if($('#zip').val()=='')
+  {
+    $('#zip').css('border','1px solid red');
+    $('#check_zip').text('Please enter Zip ');
+    $('#check_zip').addClass('error_label');
+    valid = false;
+    $('#zip').focus();
+  }
+ else
+  {
+    $('#zip').css('border','1px solid #cccccc');   
+    $('#check_zip').text('');
+   }
+   if($('#created_by').val()=='')
+    {
+    $('#created_by').css('border','1px solid red');
+    $('#check_created_by').text('Please enter Created Person Name  ');
+    $('#check_created_by').addClass('error_label');
+    valid = false;
+    $('#created_by').focus();
+  }
+ else
+  {
+    $('#created_by').css('border','1px solid #cccccc');   
+    $('#check_created_by').text('');
+   }
+   
+   if($('#activation_date').val()=='')
+  {
+    $('#activation_date').css('border','1px solid red');
+    $('#check_activation_date').text('Please enter Activation Date ');
+    $('#check_activation_date').addClass('error_label');
+    valid = false;
+    $('#activation_date').focus();
+  }
+ else
+  {
+    $('#activation_date').css('border','1px solid #cccccc');   
+    $('#check_activation_date').text('');
+   }
+   if($('#deactivation_date').val()=='')
+    {
+    $('#deactivation_date').css('border','1px solid red');
+    $('#check_deactivation_date').text('Please enter Deactivation Date');
+    $('#check_deactivation_date').addClass('error_label');
+    valid = false;
+    $('#deactivation_date').focus();
+  }
+ else
+  {
+    $('#deactivation_date').css('border','1px solid #cccccc');   
+    $('#check_deactivation_date').text('');
+   }
+   
+   
+   
+   if($('#logo').val()=='')
+  {
+    $('#logo').css('border','1px solid red');
+    $('#check_check_logo').text('Please enter Logo ');
+    $('#check_check_logo').addClass('error_label');
+    valid = false;
+    $('#logo').focus();
+  }
+ else
+  {
+    $('#logo').css('border','1px solid #cccccc');   
+    $('#check_logo').text('');
+   }
+  
+   
+   if($('#service_needed').val()=='')
+  {
+    $('#service_needed').css('border','1px solid red');
+    $('#check_service_needed').text('Please enter Service Needed ');
+    $('#check_service_needed').addClass('error_label');
+    valid = false;
+    $('#service_needed').focus();
+  }
+ else
+  {
+    $('#service_needed').css('border','1px solid #cccccc');   
+    $('#check_service_needed').text('');
+   }
+   
+   
+   if($('#status').val()=='')
+  {
+    $('#status').css('border','1px solid red');
+    $('#check_status').text('Please enter Service Needed ');
+    $('#check_status').addClass('error_label');
+    valid = false;
+    $('#status').focus();
+  }
+ else
+  {
+    $('#status').css('border','1px solid #cccccc');   
+    $('#check_status').text('');
+   }
+   
+   if(valid == true)
+        {
+
+           //dispalyAccusedListing();
+        }
+        else
+        {
+            return false;
+        }
+
+    });
+
    </script>
+
+     <style>
+         .error_label {
+                   color:red;   
+         }
+        </style>
+</body>
+</html>
+  
+  
 
   

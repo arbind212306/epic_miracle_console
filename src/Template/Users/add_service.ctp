@@ -1,4 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -29,16 +30,16 @@
         <div class="box-body">
           <div class="row">
               <?= $this->Form->create(null, ['url' => false]); ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-group">
-                <label>Client Id</label>
+                <label>Business Unit </label>
                 <select class="form-control select2" onchange="getClientInfo(this);" style="width: 100%;">
                   <option selected="selected">- Select -</option>
                   <?php 
                   if(!empty($result)):
                      foreach($result as $client): 
                   ?>
-                  <option value="<?= $client['client_id'] ?>"><?= $client['client_id'] ?></option>
+                  <option value="<?= $client['id'] ?>"><?= $client['bu_name']?></option>
                   <?php
                   endforeach;
                   endif;
@@ -46,22 +47,44 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- /.form-group -->
               <div class="form-group">
-                <label>Name</label>
-                <input class="form-control" id="name" value="" type="text" name="name">
+                <label>Industry Name</label>
+                
+                 <select class="form-control select2" id="industry_name" onchange="clientname(this);"  style="width: 100%;">
+                  <option selected="selected">- Select -</option>
+                
+                  </select>
+                
+              
               </div>
               <!-- /.form-group -->
             </div>
-            <div class="col-md-4">  
+            <div class="col-md-3">  
               <!-- /.form-group -->
               <div class="form-group">
-                <label>Type</label>
-                <input class="form-control" id="type" value="" type="text" name="type">
+                <label>Client Name</label>
+                 <select class="form-control select2" name="client_name" id="client_name"   style="width: 100%;">
+                  <option selected="selected">- Select -</option>
+                
+                  </select>
+                
               </div>
               <!-- /.form-group -->
             </div>
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Status</label>
+                 <select class="form-control select2" name="client_name" id="client_name"   style="width: 100%;">
+                  <option selected="selected">- Select -</option>
+                
+                  </select>
+                
+              </div>
+              <!-- /.form-group -->
+            </div>  
               <?= $this->Form->end(); ?>
           </div>
           <!-- /.row -->
@@ -220,6 +243,106 @@
           
       </div>
       <!-- div for adding more product ends here -->
+      <div class="row" id="row_1">
+        <div class="col-md-12">
+
+            <div class="box box-danger" id="product_details" style="">
+<!--            <div class="box-header">
+              <h3 class="box-title">Input masks</h3>
+            </div>-->
+            <div class="box-body">
+          <!-- row -->
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Termination fee clause</label>
+                <textarea form-control name="feeClause"></textarea>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Escalation Terms</label>
+                <textarea form-control  name="escalationTerms"></textarea>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Company Code</label>
+                 <input class="form-control" id="companyCode" type="text" name="companyCode">
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Service</label>
+                <select class="form-control"  name="service" style="width: 100%;">
+                    <option>1256</option>
+                    <option>1256</option>
+                    <option>1256</option>
+                    <option>1256</option>
+                </select>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Mode of Payment</label>
+                <select class="form-control select2" name="modeOfPayment">
+                    <option value="">-Select Payment Mode-</option>
+                    <option value="3"> EFT </option>
+                    <option value="4"> Bill Pay </option>
+                    <option value="7"> Other </option><option value="5"> Cheque </option>
+                    <option value="6"> Credit Card </option>  
+                </select>
+              </div>
+              <!-- /.form-group -->
+            </div> 
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Billing Frequency</label>
+                <select class="form-control " name="billingFrequency" style="width: 100%;">
+                   <option value="0" selected="selected">-Select Frequency-</option>
+                   <option value="5"> Monthly </option>
+                   <option value="12"> Bi Weekly </option><option value="8"> Per Quarter </option>
+                   <option value="9"> Half Yearly  </option>
+                   <option value="10"> Annual </option>
+                   <option value="11"> Weekly </option>
+                </select>
+              </div>
+              <!-- /.form-group -->
+            </div> 
+            <div class="col-md-3">  
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label>Create date</label>
+                <input class="form-control" id="create_date" type="text" name="createDate">
+              </div>
+              <!-- /.form-group -->
+            </div>
+            <div class="col-md-3">  
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label>Expiry date</label>
+                    <input class="form-control" id="expiry_date" type="text" name="expiryDate">
+                </div>
+                <!-- /.form-group -->
+            </div>
+          </div>    
+          <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+        <!-- /.col (left) -->
+      </div>
     </section>
     <!-- /.content -->
 </div>
@@ -232,5 +355,10 @@
 //$(".date").datepicker();
 ////code for deactivation date picker
 //$(".date").datepicker();
+//code for create date date picker    
+$("#create_date").datepicker();
+//code for expiry date picker
+$("#expiry_date").datepicker();
+
 
 </script>

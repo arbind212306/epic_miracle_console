@@ -16,12 +16,9 @@ class ClientmastersTable extends Table
     {
         parent::initialize($config);
         $this->setTable('clientmaster');
+
         $this->setPrimaryKey('client_id');
-        /*$this->hasMany('Departments', [
-            'className' => 'DepartmentsTable',
-            'foreignKey' => 'business_unit_id',
-            'propertyName' => 'type'
-        ]);*/
+               
     }
 
     

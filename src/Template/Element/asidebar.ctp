@@ -36,6 +36,7 @@
           </a>
               <?php $client_add=$this->Url->build(['controller'=>'Admin','action'=>'clientAdd']); ?>
               <?php $client_list=$this->Url->build(['controller'=>'Admin','action'=>'viewClients']); ?>
+               <?php $db_list=$this->Url->build(['controller'=>'Admin','action'=>'viewDb']); ?>
           <ul class="treeview-menu">
          
             <li><a href="<?php echo  $client_add ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>
@@ -46,12 +47,58 @@
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Service Manager</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'addService']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> View </a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Database Configuration</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'Admin', 'action' => 'addDb']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?php echo $db_list; ?>"><i class="fa fa-circle-o"></i> View </a></li>
+         </ul>
+        </li>
+        
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Business Unit</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'BusinessUnit', 'action' => 'add']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'BusinessUnit', 'action' => 'index']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
+        </li>
+        
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Industry</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'Industry', 'action' => 'add']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Industry', 'action' => 'index']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
+        </li>
+        
+        
+        
       </ul>
     </section>
     <!-- /.sidebar -->

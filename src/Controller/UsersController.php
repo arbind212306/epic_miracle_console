@@ -25,8 +25,8 @@ class UsersController extends AppController {
     }
     
     public function addService(){
-        $client = TableRegistry::get('Clientmaster');
-        $result_client = $client->find('all', ['fields' => ['client_id', 'client_name', 'client_type']]);
+        $client = TableRegistry::get('BusinessUnit');
+        $result_client = $client->find('all', ['fields' => ['bu_name','id']]);
         $result = []; 
         foreach($result_client as $d){
             $result[] = $d->toArray();
@@ -38,20 +38,56 @@ class UsersController extends AppController {
         if($this->request->is('ajax')){
             $this->autoRender = false;
             $id = $this->request->data('id');
-            $client = TableRegistry::get('Clientmaster');
-            $client_details = $client->find('all', ['fields' => ['client_name', 'client_type'], 
-                'conditions' => ['client_id' => $id]]);
-            $result = [];
-            foreach ($client_details as $d){
-                $result[] = $d->toArray();
+        
+        
+            $client = TableRegistry::get('Industry');
+            $client_details = $client->find('all', ['fields' => ['id', 'industry_name'], 
+                'conditions' => ['bu_id' => $id]])->toArray();
+           
+            
+            $result = '';
+            foreach ($client_details as $key => $d){
+              
+        $result .= '<option value="' . $d->id . '" >' . $d->industry_name . '</option>';
+         
+    
+    
+               
+            
             }
-            if(!empty($result)){
-                $result = json_encode($result);
-            }
-            echo $result;
+        header('Content-Type: application/json');
+        echo  json_encode(  $result);
+            
+           
         }
     }
     
+
+public function clientname(){
+        if($this->request->is('ajax')){
+            $this->autoRender = false;
+            $id = $this->request->data('id');
+            $client = TableRegistry::get('clientmaster');
+            $client_details = $client->find('all', ['fields' => ['client_id', 'client_name'], 
+                'conditions' => ['industry_name' => $id]])->toArray();
+           
+            $result = '';
+            foreach ($client_details as $key => $d){
+              
+        $result .= '<option value="' . $d->client_id . '" >' . $d->client_name . '</option>';
+                }
+        header('Content-Type: application/json');
+        echo  json_encode(  $result);
+                     
+        }
+    }
+
+
+
+
+
+
+
     public function getProductDetails(){
         if($this->request->is('ajax')){
             $this->autoRender = false;
@@ -66,4 +102,25 @@ class UsersController extends AppController {
         }
     }
     
+    public function getproductcode()
+    {
+        if($this->request->is('ajax')){
+            $this->autoRender = false;
+            // var_dump($_POST);die();
+            $id = $this->request->data('id');
+            $service = TableRegistry::get('Services');
+             $service_details = $service->find('all',array('fields' => array('product_id')))->where(['id' => $id]);
+             $result = [];
+            foreach ($service_details as $service_details){
+                $result[] = $service_details->toArray();
+            }
+            if(!empty($result)){
+                $result = json_encode($result);
+            }
+            echo $result;
+           
+
+        }
+    }
+
 }

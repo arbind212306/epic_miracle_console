@@ -150,7 +150,7 @@
 <!-- jquery files are inculded here -->
 <!-- jQuery 3 -->
 <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-
+<?= $this->Html->script('jquery.min'); ?>
 <!-- Bootstrap 3.3.7 -->
 <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <?= $this->Html->script('bootstrap.min'); ?>
