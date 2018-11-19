@@ -3,7 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class ServicesTable extends Table
+class DbconfigurationTable extends Table
 {
 
     /**
@@ -15,27 +15,22 @@ class ServicesTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->setTable('services');
-        $this->setPrimaryKey('id');
+        $this->setTable('dbconfiguration');
+        $this->setPrimaryKey('db_id');
         /*$this->hasMany('Departments', [
             'className' => 'DepartmentsTable',
             'foreignKey' => 'business_unit_id',
             'propertyName' => 'type'
         ]);*/
-    
-    $this->hasMany('console_client_service', [
-           
-            'foreignKey' => 'service_id',
-             'joinType' => 'INNER'
+        $this->belongsTo('Clientmasters', [
+            'ClassName' => 'ClientmastersTable',
+            'foreignKey' => 'client_id',
+            'joinType' => 'INNER'
         ]);
     }
     
-    public function getServiceDetails($arr=''){
+    public function getServiceDetails(){
         $query = $this->find('all');
-        if((!empty($arr)) && (!in_array("all", $arr))){
-             $query->where(['id IN' => $arr]);
-         }
-
         $result = [];
         foreach ($query as $d){
             $result[] = $d->toArray();

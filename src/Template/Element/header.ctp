@@ -12,7 +12,7 @@
   <!-- Font Awesome -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <!-- jvectormap -->
-  <?= $this->Html->css(['jquery-jvectormap','dataTables.bootstrap.min','font-awesome.min','ionicons.min']); ?>
+  <?= $this->Html->css(['jquery-jvectormap','dataTables.bootstrap.min','ionicons.min']); ?>
   <!-- Theme style -->
   <?= $this->Html->css('AdminLTE.min'); ?>
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -21,12 +21,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?= $this->Html->css('select2.min') ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <!-- link for custom style of every elements of console -->
+  <?= $this->Html->css('custom-style'); ?>
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -39,7 +42,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <!-- <span class="logo-mini"><b>A</b>LT</span> -->
       <!-- logo for regular state and mobile devices -->
@@ -59,7 +62,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">Admin</span>
             </a>
             <ul class="dropdown-menu">
               </li>
@@ -80,6 +83,12 @@
 
     </nav>
   </header>
+  <style> 
+    .active {
+  background-color: #666;
+  color: white;
+}
+  </style>
 
 <!-- header section ends here -->
 

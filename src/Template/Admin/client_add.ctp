@@ -26,7 +26,7 @@
     <div class="col-md-10 col-sm-12 col-xs-12">
     <div class="alert alert-success alert-dismissible" style="text-align:center;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Record has been  successfully inserted.</h4>
+                <h4><i class="icon fa fa-check"></i> Client has been  successfully inserted.</h4>
                </div>
               </div>
        
@@ -61,20 +61,33 @@
             
 			  <div class="form-group">
                   <label for="client_name">Client Name</label>
-		
-                    <input type="text" id="client_name"  name="client_name" class="form-control"  placeholder="">
+		 <input type="text" id="client_id"  name="client_name" class="form-control"  placeholder="">
                 <span class="error_label" id="check_client_name"></span>
                           </div>
-				<div class="form-group" style="padding-top:50px;">
-                  <label for="industry_name">Industry Name</label>
-                  <input type="text" id="industry_name" name="industry_name" class="form-control" placeholder="">
-                  <span class="error_label" id="check_industry_name"></span>
-                </div>
-				<div class="form-group">
+            
+           <div class="form-group">
                   <label for="bu">Business unit</label>
-                  <input type="text" name="bu"  class="form-control" id="bu" placeholder="">
+                 <select class="form-control select2" name="bu_id" onchange="getClientInfo(this);" style="width: 100%;">
+                                <option selected="selected">- Select -</option>
+                                <?php
+                                if (!empty($result)):
+                                    foreach ($result as $client):
+                                        ?>
+                                        <option value="<?= $client['id'] ?>"><?= $client['bu_name'] ?></option>
+                                        <?php
+                                    endforeach;
+                                endif;
+                                ?>
+                            </select>
                   <span class="error_label" id="check_bu"></span>
                 </div>
+            
+            <div class="form-group">
+                            <label>Industry Name</label>
+                            <select class="form-control select2" name="industry_name" id="industry_name" onchange="clientname(this);"  style="width: 100%;">
+                                <option selected="selected">- Select -</option>
+                            </select>
+                       </div>
                 <div class="form-group">
                   <label for="email_id">Email address</label>
                   <input type="email" name="email_id" class="form-control" id="email_id" placeholder="">
@@ -245,21 +258,27 @@
  
 <!-- ./wrapper -->
 <?= $this->Html->script('jquery.min'); ?>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<?= $this->Html->script(['service_manager','select2.full.min']); ?>
+<?= $this->Html->css(['select2.min.css']); ?>
+
+
  <script type="text/javascript">
    $('#myForm').click(function(){
     var valid = true;
-if($('#client_name').val()=='')
+if($('#client_id').val()=='')
   {
-    $('#client_name').css('border','1px solid red');
-    $('#check_client_name').text('Please enter Client Name ');
-    $('#check_client_name').addClass('error_label');
+    $('#client_id').css('border','1px solid red');
+    $('#check_client_id').text('Please enter Client Name ');
+    $('#check_client_id').addClass('error_label');
     valid = false;
-    $('#client_name').focus();
+    $('#client_id').focus();
   }
  else
   {
-    $('#client_name').css('border','1px solid #cccccc');   
-    $('#check_client_name').text('');
+    $('#client_id').css('border','1px solid #cccccc');   
+    $('#check_client_id').text('');
    }
    if($('#industry_name').val()=='')
     {

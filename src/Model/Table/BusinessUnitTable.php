@@ -34,6 +34,7 @@ class BusinessUnitTable extends Table
         $this->setTable('business_unit');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
     }
 
     /**

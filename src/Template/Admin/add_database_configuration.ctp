@@ -92,7 +92,7 @@
       </ol>-->
     </section>
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
+  <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -120,55 +120,73 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="">
-          <a href="<?php echo $this->Url->build(['controller'=>'Admin','action'=>'viewClients']) ?>">
-            <i class="fa fa-dashboard"></i> <span>Manage Client</span>
-            
-          </a>
-                         
-        
-        </li>
-        <li class="">
-          <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'manageContract']) ?>">
-            <i class="fa fa-files-o"></i>
-            <span>Contract</span>
-                    </a>
-             </li>
-          <!--<ul class="treeview-menu">
-            <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'addService']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'manageContract']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
-          </ul> -->
-       
-        <li class="treeview">
+        <li class="active treeview menu-open">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Masters </span>
+            <i class="fa fa-dashboard"></i> <span>Managr Client</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+              <?php $client_add=$this->Url->build(['controller'=>'Admin','action'=>'clientAdd']); ?>
+              <?php $client_list=$this->Url->build(['controller'=>'Admin','action'=>'viewClients']); ?>
+          <ul class="treeview-menu">
+         
+            <li><a href="<?php echo  $client_add ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>
+            <li class="active"><a href="<?php echo  $client_list ?>"><i class="fa fa-circle-o"></i> View Client</a></li>
+          </ul>
+        </li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Service Manager</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?= $this->Url->build(['controller' => 'Admin', 'action' => 'view-db']) ?>"><i class="fa fa-circle-o"></i> Database Configuration</a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'BusinessUnit', 'action' => 'manageBusinessUnit']) ?>"><i class="fa fa-circle-o"></i> Business Unit </a></li>
-            <li><a href="<?= $this->Url->build(['controller' => 'Industry', 'action' => 'manageIndustry']) ?>"><i class="fa fa-circle-o"></i> Industry </a></li>
-            
-            
-            
-         </ul>
+            <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'addService']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
         </li>
-        
-        
-        
-        <li class="">
-          <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">
-            <i class="fa fa-database"></i> <span>Client Login</span>
-           
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Database Configuration</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-         
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'Admin', 'action' => 'addDb']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Admin', 'action' => 'ViewDb']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Business Unit</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'BusinessUnit', 'action' => 'add']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'BusinessUnit', 'action' => 'index']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
         </li>
         
         
-        
-        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i> <span>Industry</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= $this->Url->build(['controller' => 'Industry', 'action' => 'add']) ?>"><i class="fa fa-circle-o"></i> Add </a></li>
+            <li><a href="<?= $this->Url->build(['controller' => 'Industry', 'action' => 'index']) ?>"><i class="fa fa-circle-o"></i> View </a></li>
+          </ul>
+        </li>
+
         
       </ul>
     </section>
@@ -179,9 +197,8 @@
             <div class="box box-primary">
              <!-- <form action="" name="myForm"  method="post" enctype = "multipart/form-data" onsubmit="return(validate());"> -->
                    <div class="box-header with-border">
-              <h3 class="box-title text-center" style="margin-left: 10px;">Add Database</h3>
+              <h3 class="box-title text-center" style="margin-left: 10px;">Add Database Configuration</h3>
             </div> 
-            
       <div class="row">
           <div class="<?php echo @$class; ?>">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close"><?php echo @$close; ?></a>

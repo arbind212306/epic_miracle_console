@@ -1,4 +1,4 @@
-<?php /*pr($client_list); die();*/?>
+<?php /*pr($client_services_details); die();*/?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -11,40 +11,52 @@
       <div class="row">
           <div class="box-header with-border">
               <div class="col-md-9 col-sm-12 col-xs-12">
-              <h2 class="box-title" style="margin-left: 10px;margin-top: 5px;">View Client</h2>
+              <h2 class="box-title" style="margin-left: 10px;margin-top: 5px;">Manage Contract</h2>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
-                  <a href="<?= $this->Url->build(['controller' => 'admin', 'action' => 'clientAdd']) ?>" class="btn btn-primary" style="margin-left: 10px;">
+                  <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'add_contract']) ?>" class="btn btn-primary" style="margin-left: 10px;">
               <i class="fa fa-plus fa-fw"></i>Add</a>
               </div>
-              <div class="col-xs-12 margin-top-lg ">
+         
+
+<div class="col-xs-12 margin-top-lg ">
                 <?php echo $this->Form->create(null, ['url' => false]); ?>
                 
             <table class="table table-striped" id="report_table" >
                 <thead>
                 <tr>
-                    <th>Client Type</th>
                     <th>Client Name</th>
-                    <th>Mobile No</th>
-                    <th>Logo</th>
+                    <th>Company Name</th>
+                    <th>Industry</th>
+                     <th>Contract Date</th>
+                    <th>Status</th>
+                    <th>Contract</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                     
-            <?php foreach ($client_list as $client_lists) {?>
+            <?php foreach ($client_services_details as $client_lists) {?>
+              <?php $client_id= $this->Url->build(['controller' => 'users', 'action' => 'editContract',$client_lists['client_id']]) ?>
+            
+            
               <tr>
-                    <td><?php echo $client_lists['client_type']?></td>
-                    <td><?php echo $client_lists['client_name']?></td>
-                    <td><?php echo $client_lists['mobile']?></td>
-                    <td><?php $image = $client_lists['logo'];   
-                    echo $this->Html->image("../webroot/upload/$image", array('alt' => '', 'style' => 'width:70px')); 
-
-                     ?></td>
+                    <td><?php echo $client_lists->clientmaster['client_name']?></td>
+                    <td><?php echo $client_lists->business_unit['bu_name']?></td>
+                    <td><?php echo $client_lists->industry['industry_name']?></td>
+                    <td><?php $date = $client_lists['contract_create_date']; $date1 = substr("$date",0,8); echo date("d-m-Y", strtotime($date1)); ?></td>
+                    <td><?php $status = $client_lists['status']; if($status == 1){echo '<span style="color:#009900; ">Approved</span>'; } else { echo '<span style="color:#FF0000; ">Rejected</span>';;}?></td>
+                     <td>
+                       <?php foreach($client_services_details1 as $client_services_details1){
+                              $imgpath = $client_services_details1['image'];
+                             $path = $this->Url->build('/') . "upload/$imgpath";
+                             echo'<a target="_blank" href="' . $path .'">' .'<i class="fa fa-download"></i>'. '</a>';}
+                        ?>
+                     </td>
                     <td>
                         
                          <!-- <button type="button" class="btn btn-primary btn-sm" data-sidebar-button onclick="return editclient('<?php echo $client_lists['client_id'];?>')"><i class="fa fa-pencil"></i> Edit</button> -->
-                          <i class="fa fa-edit" title="Edit client details"  data-toggle="modal" data-target="#edituser"  onclick="return editclient('<?php echo $client_lists['client_id'];?>')"></i>
+                         <a href="<?= $client_id ?>"><i class="fa fa-edit" title="Edit client details"   data-target=""  ></i></a>
                          <i class="fa fa-eye" data-toggle="modal" data-target="#viewuser" title="View client details"  onclick="return viewclient('<?php echo $client_lists['client_id'];?>')"></i>
                           <?php if($client_lists['status'] == 1){?>
                           <i class="fa fa-toggle-on" title="Disable User"  onclick="return  disableuser('<?php echo $client_lists['client_id']?>');"></i>
@@ -64,6 +76,8 @@
             <?php $this->Form->end(); ?>
 
         </div>
+       
+
             </div>
           </div>
     
@@ -78,7 +92,6 @@
           </div>
         </section> -->
         
-	     
     <!-- /.content -->
 
   <!-- /.content-wrapper -->
@@ -284,13 +297,6 @@
     $(document).ready(function () {
     $('#report_table').DataTable({
        "aaSorting" : [],
-       "columns": [
-              {"width": "4%"},
-              {"width": "8%"},
-              {"width": "5%"},
-              {"width": "4%"},
-              {"width": "6%"}
-          ],
          
     });
 });

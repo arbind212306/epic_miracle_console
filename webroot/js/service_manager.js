@@ -3,9 +3,9 @@
  * on change it auto fills the text box for name and type
  * displays product details form 
  */
-$("#industry_name").prop('disabled', true);
+
 function getClientInfo(id) {
-    $("#industry_name").prop('disabled', false);
+
     var id = id.value;
     $.ajax({
         url: webroot + 'users/get-client-details',
@@ -25,11 +25,11 @@ function getClientInfo(id) {
     });
 }
 
-$("#client_name").prop('disabled', true);
+
 function clientname(id) {
 
     var id = id.value;
-    $("#client_name").prop('disabled', false);
+    
     $.ajax({
         url: webroot + 'users/clientname',
         method: 'POST',
@@ -40,6 +40,8 @@ function clientname(id) {
         success: function (data) {
             var clientlist = JSON.parse(data);
             $('#client_name').html(clientlist);
+         
+
 
         },
         error: function (data) {
@@ -48,7 +50,32 @@ function clientname(id) {
     });
 }
 
+function getclientid(id) {
 
+    var id = id.value;
+    $.ajax({
+        url: webroot + 'users/getclientid',
+        method: 'POST',
+        data: 'id=' + id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('x-CSRF-Token', $('[name="_csrfToken"]').val());
+        },
+        success: function (data) {
+            // alert(data);
+            var data = JSON.parse(data);
+             $('#clientid').val(data[0].client_id);
+             $('#companyCode').val(data[0].client_code);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+// function current_date(date)
+// {   var date = date.value;
+//     alert(date);
+// }
 
 
 /*
@@ -86,7 +113,7 @@ function addMoreService(increment) {
             '<label>Service Type</label>' +
             '<select class="form-control select2" name="service_type[]"' +
             'style="width: 100%;">' +
-            '<option selected="selected">- Select -</option>' +
+            '<option selected="selected"> Select </option>' +
             '<option value="1">Paid</option>' +
             '<option value="0">Trail</option>' +
             '</select>' +
@@ -154,7 +181,7 @@ function addMoreService(increment) {
 }
 
 function option() {
-    var option = '<option value="" selected="selected">- Select -</option>' +
+    var option = '<option value="" selected="selected"> Select </option>' +
             '<option value="0 - 10">0 - 10</option>' +
             '<option value="11 - 15">11 - 15</option>' +
             '<option value="16 - 20">16 - 20</option>' +
@@ -248,6 +275,61 @@ function getProductCode(){
     });
 }
 
+//$('#service').on('click', function(){
+//    alert('hi');
+//});
+function getServiceRow(){
+    var arr = [];
+    $("#service option:selected").each(function() {
+         arr.push($(this).val());
+    });
+    console.log(arr);
+    $.ajax({
+        url: webroot + 'users/get-service-div',
+        method: 'POST',
+        data: 'arr=' +arr,
+        beforeSend: function(xhr){
+            xhr.setRequestHeader('x-CSRF-Token', $('[name="_csrfToken"]').val());
+        },
+        success: function(data){
+            $('#hideServiectTr').hide();
+            $('#appendServiceTr').append(data);
+//            $('#appendServiceTr').show(data);
+            console.log(data);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+
+function getServiceDiv(){
+    console.log('hi');
+    alert('hi');
+//    var get_selected = $("#service option:selected").last().val();
+//    alert(get_selected);
+//    $.ajax({
+//        url: webroot + 'users/get-service-div',
+//        method: 'POST',
+//        data: 'id=' +get_selected,
+//        beforeSend: function(xhr){
+//            xhr.setRequestHeader('x-CSRF-Token', $('[name="_csrfToken"]').val());
+//        },
+//        success: function(data){
+//            $('#hideServiectTr').hide();
+//            $('#appendServiceTr').append(data);
+////            $('#appendServiceTr').show(data);
+//            console.log(data);
+//        },
+//        error: function(error){
+//            console.log(error);
+//        }
+//    });
+}
+
+
+
 
 /*
  * @param {type} stid
@@ -268,7 +350,3 @@ $(".datepick").datepicker();
 //code for deactivation date picker
 $(".datepick").datepicker();
 
-//code for create date date picker    
-$("#create_date").datepicker();
-//code for expiry date picker
-$("#expiry_date").datepicker();

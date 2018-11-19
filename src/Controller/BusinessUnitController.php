@@ -18,12 +18,12 @@ class BusinessUnitController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function manageBusinessUnit()
+    {$value = 5;
         $this->viewBuilder()->layout('admin_layout');
 		$businessUnit = $this->BusinessUnit->find('all');
 
-        $this->set(compact('businessUnit'));
+        $this->set(compact('businessUnit','value'));
     }
 
     /**
@@ -48,8 +48,8 @@ class BusinessUnitController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function addBusinessUnit()
+    {$value = 5;
 		$this->viewBuilder()->layout('admin_layout');
         $businessUnit = $this->BusinessUnit->newEntity();
         if ($this->request->is('post')) {
@@ -61,9 +61,10 @@ class BusinessUnitController extends AppController
         $this->Flash->set($message, ['element' => 'success']);
                 //return $this->redirect(['action' => 'index']);
             }
+			
             $this->Flash->error(__('The business unit could not be saved. Please, try again.'));
         }
-        $this->set(compact('businessUnit'));
+        $this->set(compact('businessUnit','value'));
     }
 
     /**
@@ -73,8 +74,8 @@ class BusinessUnitController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function editBusinessUnit($id = null)
+    {$value = 5;
 		$this->viewBuilder()->layout('admin_layout');
         $businessUnit = $this->BusinessUnit->get($id, [
             'contain' => []
@@ -88,7 +89,7 @@ class BusinessUnitController extends AppController
             }
             $this->Flash->error(__('The business unit could not be saved. Please, try again.'));
         }
-        $this->set(compact('businessUnit'));
+        $this->set(compact('businessUnit','value'));
     }
 
     /**

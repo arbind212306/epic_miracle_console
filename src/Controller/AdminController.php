@@ -25,18 +25,23 @@ class AdminController extends AppController
 
 
     public function clientAdd()
-    {
+    {$value = 2;
       $this->viewBuilder()->layout('admin_layout');
       $service_lists = $this->getservices();
 	   $time = Time::now();
-
+  $client = TableRegistry::get('BusinessUnit');
+        $result_client = $client->find('all', ['fields' => ['bu_name','id']]);
+        $result = []; 
+        foreach($result_client as $d){
+            $result[] = $d->toArray();
+        }  
 
     if($this->request->is('post')){
 
       $client_type = $this->request->data('client_type');
       $client_name = $this->request->data('client_name');
       $industry_name = $this->request->data('industry_name');
-      $bu = $this->request->data('bu');
+      $bu = $this->request->data('bu_id');
       $email_id = $this->request->data('email_id');
       $phone = $this->request->data('phone');
 
@@ -61,6 +66,7 @@ class AdminController extends AppController
       $created_by = $this->request->data('created_by');
       $activation_date = $this->request->data('activation_date');
       $deactivation_date= $this->request->data('deactivation_date');
+    $password= $this->request->data('password');
       $usersTable = TableRegistry::get('clientmaster');
       $temFilePath = $_FILES['logo']['tmp_name'];
       if ($temFilePath != '') {
@@ -98,7 +104,8 @@ class AdminController extends AppController
       $usersdata->activation_date = $activation_date;
       $usersdata->deactivation_date = $deactivation_date;
       $usersdata->logo=  $files;
-      
+  $usersdata->password=  $password;
+      //pr($usersdata);die;
       if( $usersTable->save($usersdata)){
 
         $message = "Record has been successfully insert";
@@ -108,7 +115,7 @@ class AdminController extends AppController
 
     }
 
-    $this->set(compact('service_lists'));
+    $this->set(compact('service_lists','result','value'));
   }
   public function getservices()
   {
@@ -127,11 +134,11 @@ class AdminController extends AppController
 
   
   public function viewClients()
-  {
+  { $value = 2;
     $this->viewBuilder()->setlayout('admin_layout');
     $client_details = TableRegistry::get('clientmasters');
     $client_list = $client_details->find('all',array('fields' => array('client_id','client_name','client_type','mobile','logo','status')))->toArray();
-    $this->set(compact('client_list'));
+    $this->set(compact('client_list','value'));
 
   }
 
@@ -246,12 +253,42 @@ public function addDb()
 
 
   public function viewDb()
-  {
+  {$value = 4;
     $this->viewBuilder()->setlayout('admin_layout');
     $db_details = TableRegistry::get('Dbconfiguration');
-    $db_list = $db_details->find('all',array('fields' => array('db_id','client_id','service_id','db_name','host_name')))->toArray();
-    $this->set(compact('db_list'));
+     $db_list = $db_details->find('all', array('order' => array('db_id' => 'desc')))->contain(['clientmasters'])->toArray();
+    // $db_list = $db_details->find('all',array('fields' => array('db_id','client_id','service_id','db_name','host_name')))->toArray();
+    $this->set(compact('db_list','value'));
 
   }
 
+   public function editdb()
+  {
+    $this->autoRender = false;
+    if($this->request->is('ajax'))
+    {
+      $id = $this->request->data('db_id');
+      $db_detail = TableRegistry::get('Dbconfiguration');
+      $db_list = $db_detail->find('all')->where(['db_id' => $id])->toArray();
+      echo(json_encode($db_list));
+      
+    }
+
 }
+
+ public function updatedbdetails() {
+   $this->autoRender = false;
+       
+        $db_id = $this->request->data('db_id');
+        $host_name = $this->request->data('host_name');
+        $username = $this->request->data('username');
+        $db_auth = $this->request->data('db_auth');
+        $db_name = $this->request->data('db_name');
+   $tablename = TableRegistry::get("dbconfiguration");
+   $conditions = array('db_id' => $db_id);
+   $fields = array('db_id' => $db_id, 'host_name' => $host_name, 'username' => $username, 'db_auth' => $db_auth, 'db_name' => $db_name);
+   $tablename->updateAll($fields, $conditions);
+ }
+
+}
+

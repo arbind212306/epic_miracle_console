@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Industry $industry
+ */
+?>
+
 
 
 <!-- header section ends here -->
@@ -18,7 +25,7 @@
             <div class="box box-primary">
              <!-- <form action="" name="myForm"  method="post" enctype = "multipart/form-data" onsubmit="return(validate());"> -->
                    <div class="box-header with-border">
-            <h3 class="box-title text-center col-md-10" style="">Add Business Unit</h3>
+              <h3 class="box-title text-center col-md-10" style="">Add Industry</h3>
             </div> 
       <div class="row">
           <?php $flash_message = $this->Flash->render() ?>
@@ -26,14 +33,14 @@
     <div class="col-md-10 col-sm-12 col-xs-12">
     <div class="alert alert-success alert-dismissible" style="text-align:center;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Business Unit has been  successfully inserted.</h4>
+                <h4><i class="icon fa fa-check"></i> Industry  has been  successfully inserted.</h4>
                </div>
               </div>
        
        
     <?php } ?>
           
-       <?= $this->Form->create($businessUnit) ?>
+       <?= $this->Form->create($industry) ?>
         <!-- left column -->
        <div class="col-md-12 " >
             <div class="col-md-3 col-sm-3"></div>
@@ -43,18 +50,29 @@
             <br> 
           
             
+            <div class="form-group">
+                  <label for="status">Bu Name</label>
+                <div class="form-group">
+                
+                  <select class="form-control" name="bu_id" id="status">
+                     <?php foreach($businesses as $businesse){ ?>
+                     <option value="<?= $businesse->id ?>"><?= $businesse->bu_name ?></option>
+                 
+                   <?php } ?>
+                  </select>
+                    <span class="error_label" id="check_status"></span>
+                </div>
+                </div>
+            
+            
 			  <div class="form-group">
-                  <label for="bu_name">Bu Name</label>
+                  <label for="industry_name">Industry Name</label>
 		
-                    <input type="text" id="bu_name"  name="bu_name" class="form-control"  placeholder="">
-                <span class="error_label" id="check_bu_name"></span>
+                    <input type="text" id="industry_name"  name="industry_name" class="form-control"  placeholder="">
+                <span class="error_label" id="check_industry_name"></span>
                           </div>
 						  
-						   <div class="form-group">
-                  <label for="description">Bu Desc</label>
-                  <textarea   name="bu_desc" class="form-control" id="bu_desc" placeholder=""></textarea>
-                  <span class="error_label" id="check_bu_desc"></span>
-                </div>
+						   
             
             <div class="form-group">
                   <label for="status">Status</label>
@@ -69,7 +87,14 @@
                     <span class="error_label" id="check_status"></span>
                 </div>
                 </div>
+						  
+						  
 				
+				
+           
+            
+             
+          
         </div>
         <!--/.col (left) -->
        
@@ -100,20 +125,19 @@
  <script type="text/javascript">
    $('#myForm').click(function(){
     var valid = true;
-if($('#bu_name').val()=='')
+if($('#industry_name').val()=='')
   {
-    $('#bu_name').css('border','1px solid red');
-    $('#check_bu_name').text('Please enter Business Unit Name ');
-    $('#check_bu_name').addClass('error_label');
+    $('#industry_name').css('border','1px solid red');
+    $('#check_industry_name').text('Please enter industry Name ');
+    $('#check_industry_name').addClass('error_label');
     valid = false;
-    $('#bu_name').focus();
+    $('#industry_name').focus();
   }
  else
   {
-    $('#bu_name').css('border','1px solid #cccccc');   
-    $('#check_bu_name').text('');
+    $('#industry_name').css('border','1px solid #cccccc');   
+    $('#check_industry_name').text('');
    }
-   
    
    
    
@@ -150,4 +174,21 @@ if($('#bu_name').val()=='')
                    color:red;   
          }
         </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

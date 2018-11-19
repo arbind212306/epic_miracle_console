@@ -20,13 +20,13 @@ class IndustryController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function manageIndustry()
+    {$value = 6;
        $this->viewBuilder()->layout('admin_layout');
      $industry = $this->Industry->find('all')->contain(['BusinessUnit'])->toArray();
 
 
-        $this->set(compact('industry'));
+        $this->set(compact('industry','value'));
     }
 
     /**
@@ -37,13 +37,14 @@ class IndustryController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
-    {
+    {$value = 6;
 $this->viewBuilder()->layout('admin_layout');
         $industry = $this->Industry->get($id, [
             'contain' => ['Businesses']
         ]);
 
         $this->set('industry', $industry);
+        $this->set(compact('value'));
     }
 
     /**
@@ -51,8 +52,8 @@ $this->viewBuilder()->layout('admin_layout');
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function addIndustry()
+    {$value = 6;
 $this->viewBuilder()->layout('admin_layout');
 
  $client_detail = TableRegistry::get('BusinessUnit');
@@ -73,7 +74,7 @@ $message = "Industry Unit has been  successfully inserted.";
             $this->Flash->error(__('The industry could not be saved. Please, try again.'));
         }
        
-        $this->set(compact('industry', 'businesses'));
+        $this->set(compact('industry', 'businesses','value'));
     }
 
     /**
@@ -83,9 +84,9 @@ $message = "Industry Unit has been  successfully inserted.";
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function editIndustry($id = null)
     {
-
+$value = 6;
 $this->viewBuilder()->layout('admin_layout');
         
     
@@ -103,7 +104,7 @@ $businesses = $this->Industry->find('all')->where(['Industry.id'=>$id])->contain
             $this->Flash->error(__('The industry could not be saved. Please, try again.'));
         }
       
-        $this->set(compact('industry', 'businesses'));
+        $this->set(compact('industry', 'businesses','value'));
     }
 
     /**

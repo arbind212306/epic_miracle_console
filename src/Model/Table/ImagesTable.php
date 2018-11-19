@@ -1,9 +1,12 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
+use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
-class ClientmastersTable extends Table
+class ImagesTable extends Table
 {
 
     /**
@@ -15,18 +18,15 @@ class ClientmastersTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->setTable('clientmaster');
+        $this->setTable('images');
+        $this->setPrimaryKey('id');
+       
 
-        $this->setPrimaryKey('client_id');
-    
-$this->belongsTo('console_client_service', [
-            'foreignKey' => 'client_id',
-            'joinType' => 'INNER'
-        ]);   
 
 
     }
 
-    
+     
+
     
 }

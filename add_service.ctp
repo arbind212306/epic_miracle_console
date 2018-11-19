@@ -1,4 +1,4 @@
-Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -35,7 +35,7 @@ Content Wrapper. Contains page content -->
                         <div class="form-group">
                             <label>Business Unit </label>
                             <select class="form-control select2" name="bu_id" onchange="getClientInfo(this);" style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                                <option selected="selected">- Select -</option>
                                 <?php
                                 if (!empty($result)):
                                     foreach ($result as $client):
@@ -54,7 +54,7 @@ Content Wrapper. Contains page content -->
                             <label>Industry Name</label>
 
                             <select class="form-control select2" name="industry_id" id="industry_name" onchange="clientname(this);"  style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                                <option selected="selected">- Select -</option>
 
                             </select>
 
@@ -66,8 +66,8 @@ Content Wrapper. Contains page content -->
                         <!-- /.form-group -->
                         <div class="form-group">
                             <label>Client Name</label>
-                            <select class="form-control select2" name="client_id" name="client_name" id="client_name" onchange="getclientid(this);" style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                            <select class="form-control select2" name="client_id" name="client_name" id="client_name"   style="width: 100%;">
+                                <option selected="selected">- Select -</option>
 
                             </select>
 
@@ -77,19 +77,8 @@ Content Wrapper. Contains page content -->
                     <div class="col-md-3">  
                         <!-- /.form-group -->
                         <div class="form-group">
-                            <label>Client Id  <span id="client_id"></span></label>
-                            <input type="text" class="form-control" id="clientid"  style="height: 30px;" name="clientid" readonly="readonly">
-
-                        </div>
-                        <!-- /.form-group -->
-                    </div>
-                    
-                    
-                    <div class="col-md-1">  
-                        <!-- /.form-group -->
-                        <!-- <div class="form-group">
                             <button type="button" id="service-go-btn" class="btn btn-primary">Go</button>
-                        </div> -->
+                        </div>
                         <!-- /.form-group -->
                     </div>  
                    
@@ -104,7 +93,7 @@ Content Wrapper. Contains page content -->
         <div class="row" id="row_1">
             <div class="col-md-12">
 
-                <div class="box " id="product_details" style="">
+                <div class="box box-primary" id="product_details" style="">
                     <!--            <div class="box-header">
                                   <h3 class="box-title">Input masks</h3>
                                 </div>-->
@@ -116,7 +105,6 @@ Content Wrapper. Contains page content -->
                                     <label>Service</label>
                                     <select class="form-control select2" multiple="multiple" id="service" 
                                            onchange="getServiceRow();" name="service" style="width: 100%;">
-                                           <option value="all">All</option>
                                 <?php
                                     if (!empty($serviceResult)):
                                         foreach ($serviceResult as $service):
@@ -132,7 +120,7 @@ Content Wrapper. Contains page content -->
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label>Company Code</label>
-                                    <input class="form-control" id="companyCode" type="text" name="company_code" readonly="readonly">
+                                    <input class="form-control" id="companyCode" type="text" name="company_code">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -144,10 +132,11 @@ Content Wrapper. Contains page content -->
                                 <div class="form-group">
                                     <label>Mode of Payment</label>
                                     <select class="form-control select2" name="mode_of_payment">
-                                        <option value="">Select</option>
-                                        <?php foreach($console_mode_of_payment as $console_mode_of_payments ){ ?>
-                                        <option value="<?= $console_mode_of_payments['id']; ?>"> <?= $console_mode_of_payments['name']; ?> </option>
-                                        <?php } ?>
+                                        <option value="">-Select Payment Mode-</option>
+                                        <option value="3"> EFT </option>
+                                        <option value="4"> Bill Pay </option>
+                                        <option value="7"> Other </option><option value="5"> Cheque </option>
+                                        <option value="6"> Credit Card </option>  
                                     </select>
                                 </div>
                                 <!-- /.form-group -->
@@ -157,10 +146,12 @@ Content Wrapper. Contains page content -->
                                 <div class="form-group">
                                     <label>Billing Frequency</label>
                                     <select class="form-control " name="billing_frequency" style="width: 100%;">
-                                        <option value="0" selected="selected">Select</option>
-                                         <?php foreach($console_billing_frequency as $console_billing_frequencys ){ ?>
-                                        <option value="<?= $console_billing_frequencys['id']; ?>"> <?= $console_billing_frequencys['name']; ?> </option>
-                                        <?php } ?>
+                                        <option value="0" selected="selected">-Select Frequency-</option>
+                                        <option value="5"> Monthly </option>
+                                        <option value="12"> Bi Weekly </option><option value="8"> Per Quarter </option>
+                                        <option value="9"> Half Yearly  </option>
+                                        <option value="10"> Annual </option>
+                                        <option value="11"> Weekly </option>
                                     </select>
                                 </div>
                                 <!-- /.form-group -->
@@ -169,7 +160,7 @@ Content Wrapper. Contains page content -->
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label>Create date</label>
-                                    <input class="form-control" id="create_date" type="text" name="contract_create_date"  onchange="current_date(this);">
+                                    <input class="form-control" id="create_date" type="text" name="contract_create_date">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -184,34 +175,19 @@ Content Wrapper. Contains page content -->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Termination fee clause</label>
-                                    <textarea class="form-control" rows="3" name="temination_fee_clause" style="width: 246px;height: 36px;"></textarea>
+                                    <textarea class="form-control" rows="3" name="temination_fee_clause"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label>Escalation Terms</label>
-                                    <textarea class="form-control" rows="3"  name="escalation_terms" style="width: 246px;height: 36px;"></textarea>
+                                    <textarea class="form-control" rows="3"  name="escalation_terms"></textarea>
                                 </div>
                                 <!-- /.form-group -->
                             </div>
                         </div>    
                         <!-- /.row -->
-                        <a href="javascript:void(0);" id="anc_add_more">Add More File</a>
-                        <div class="form-group">
-                <label>Upload Contract</label>
-
-                <input type="file" name="">
-                </div>
-              
-                <div id='spn_inputs'>
-            <div class="input-append">
-              <div class="uneditable-input span3" ><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div>
-              <span class="btn btn-file"><span class="fileupload-new"></span><span class="fileupload-exists"></span>
-               <input type="file" id="upload_attachment" name="upload_attachment[]">
-             <!--  </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>  --></div>
-              
-             </div> 
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -226,12 +202,12 @@ Content Wrapper. Contains page content -->
         <!-- div starts here for client search -->
        <div class="row">
           <div class="col-md-12">
-              <div class="box " id="product_details" style="">
+              <div class="box box-primary" id="product_details" style="">
                   <div class="box-body ">
                       <div class="row">
                        <div class="box-body con-fixed-div">
                             <table class="table table-bordered scroll"  width="100%" id="service-table">
-                              <tbody id="appendServiceTr">
+                              <tbody>
                                 <tr>
                                     <th style="">Service Name</th>
                                     <th>Apply</th>
@@ -246,16 +222,11 @@ Content Wrapper. Contains page content -->
                                     <th>Bill Start Date</th>
                                     <th style="">Action</th>
                               </tr>
-<<<<<<< .mine
-<!--                              <tr id="appendServiceTr" styel=""></tr>-->
-                              <tr id="hideServiectTr">
-=======
 </tbody>
                               <!--<td id="appendServiceTr" ></td> -->
                               <tbody id="appendServiceTr">
                               <!-- <tr id="hideServiectTr" >
 
->>>>>>> .r77
                                 <td>
 
                                     <select class="form-control select2" id="get_service"  name="service_list[]">
@@ -346,24 +317,19 @@ Content Wrapper. Contains page content -->
                         </div>
                       </div>
                   </div>
-                  
-                  
               </div>
           </div>
       </div>
       <!-- div ends here for client search -->
+      
+      <!--div start for submit button -->
        <div class="row">
-     
-              <div class="box" id="product_details" style="">
-                    <div class="col-md-11 text-right">
-                  <br>
+          <div class="col-md-12 ">
+              <div class="box box-primary" id="product_details" style="">
       <input class="btn btn-success" value="Add" type="submit" >
-         
+         </div>
           </div>
       </div>
-            </div>
-      <!--div start for submit button -->
-       
       <!-- div ends here for submit button -->
       
       
@@ -376,7 +342,6 @@ Content Wrapper. Contains page content -->
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <?= $this->Html->script(['service_manager','select2.full.min']); ?>
 <?= $this->Html->css(['select2.min.css']); ?>
-
 <script>
 ////code for activation date picker    
 //$(".date").datepicker();
@@ -389,19 +354,3 @@ $("#expiry_date").datepicker();
 $('.select2').select2();
 
 </script>
-<script>
-        /* JS for Uploader */
-        $(function() {
-            /* Append More Input Files */
-            $('#anc_add_more').click(function() {
-                $('#spn_inputs').append(' <input type="file" id="upload_attachment" name="upload_attachment[]"><br>');
-            });
-        });
-
-    </script>
-<!-- <style type="text/css">
-    .select2-results ul li {
-    background-color: red;
-}
-}
-</style>

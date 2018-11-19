@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Version 2.0</small>
+        <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -17,26 +17,31 @@
       <!-- Info boxes -->
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
+          <?php $url1 = $this->url->build(['action' => 'viewClients' ,  'controller' =>'admin']) ?>
+           <a href="<?php echo $url1?>">
           <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
+            <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+                   <div class="info-box-content">
+              <span class="info-box-text">Clients</span>
+              <span class="info-box-number"><?php echo $client_number ?></span>
             </div>
+           </a>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
+          <?php $url2 = $this->url->build(['action' => 'manageContract' ,  'controller' =>'users']) ?>
+          <a href="<?php echo $url2 ?>">
           <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
+            <span class="info-box-icon bg-red"><i class="ion ion-ios-cart-outline"></i></span>
+            
             <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Contract</span>
+              <span class="info-box-number"><?php echo $contract_number ?></span>
             </div>
+          </a>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -63,9 +68,9 @@
           <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
+             <div class="info-box-content">
+              <span class="info-box-text">Product Traffic</span>
+              <span class="info-box-number">90<small>%</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>

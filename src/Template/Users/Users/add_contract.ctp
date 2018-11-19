@@ -1,16 +1,16 @@
-Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Service Manager
+          Add Contracts
             <!--<small>Preview</small>-->
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <!--<li><a href="#">Forms</a></li>-->
-            <li class="active">Service Manager</li>
+            <li class="active">Add Contracts</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -20,7 +20,7 @@ Content Wrapper. Contains page content -->
         
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Add Service</h3>
+                <h3 class="box-title"></h3>
 
                 <!--          <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -35,7 +35,7 @@ Content Wrapper. Contains page content -->
                         <div class="form-group">
                             <label>Business Unit </label>
                             <select class="form-control select2" name="bu_id" onchange="getClientInfo(this);" style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                                <option selected="selected">- Select -</option>
                                 <?php
                                 if (!empty($result)):
                                     foreach ($result as $client):
@@ -54,7 +54,7 @@ Content Wrapper. Contains page content -->
                             <label>Industry Name</label>
 
                             <select class="form-control select2" name="industry_id" id="industry_name" onchange="clientname(this);"  style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                                <option selected="selected">- Select -</option>
 
                             </select>
 
@@ -67,7 +67,7 @@ Content Wrapper. Contains page content -->
                         <div class="form-group">
                             <label>Client Name</label>
                             <select class="form-control select2" name="client_id" name="client_name" id="client_name" onchange="getclientid(this);" style="width: 100%;">
-                                <option selected="selected"> Select </option>
+                                <option selected="selected">- Select -</option>
 
                             </select>
 
@@ -144,7 +144,7 @@ Content Wrapper. Contains page content -->
                                 <div class="form-group">
                                     <label>Mode of Payment</label>
                                     <select class="form-control select2" name="mode_of_payment">
-                                        <option value="">Select</option>
+                                        <option value="">-Select Payment Mode-</option>
                                         <?php foreach($console_mode_of_payment as $console_mode_of_payments ){ ?>
                                         <option value="<?= $console_mode_of_payments['id']; ?>"> <?= $console_mode_of_payments['name']; ?> </option>
                                         <?php } ?>
@@ -157,7 +157,7 @@ Content Wrapper. Contains page content -->
                                 <div class="form-group">
                                     <label>Billing Frequency</label>
                                     <select class="form-control " name="billing_frequency" style="width: 100%;">
-                                        <option value="0" selected="selected">Select</option>
+                                        <option value="0" selected="selected">-Select Frequency-</option>
                                          <?php foreach($console_billing_frequency as $console_billing_frequencys ){ ?>
                                         <option value="<?= $console_billing_frequencys['id']; ?>"> <?= $console_billing_frequencys['name']; ?> </option>
                                         <?php } ?>
@@ -197,21 +197,6 @@ Content Wrapper. Contains page content -->
                             </div>
                         </div>    
                         <!-- /.row -->
-                        <a href="javascript:void(0);" id="anc_add_more">Add More File</a>
-                        <div class="form-group">
-                <label>Upload Contract</label>
-
-                <input type="file" name="">
-                </div>
-              
-                <div id='spn_inputs'>
-            <div class="input-append">
-              <div class="uneditable-input span3" ><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div>
-              <span class="btn btn-file"><span class="fileupload-new"></span><span class="fileupload-exists"></span>
-               <input type="file" id="upload_attachment" name="upload_attachment[]">
-             <!--  </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>  --></div>
-              
-             </div> 
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -231,7 +216,7 @@ Content Wrapper. Contains page content -->
                       <div class="row">
                        <div class="box-body con-fixed-div">
                             <table class="table table-bordered scroll"  width="100%" id="service-table">
-                              <tbody id="appendServiceTr">
+                              <tbody>
                                 <tr>
                                     <th style="">Service Name</th>
                                     <th>Apply</th>
@@ -246,16 +231,11 @@ Content Wrapper. Contains page content -->
                                     <th>Bill Start Date</th>
                                     <th style="">Action</th>
                               </tr>
-<<<<<<< .mine
-<!--                              <tr id="appendServiceTr" styel=""></tr>-->
-                              <tr id="hideServiectTr">
-=======
 </tbody>
                               <!--<td id="appendServiceTr" ></td> -->
                               <tbody id="appendServiceTr">
                               <!-- <tr id="hideServiectTr" >
 
->>>>>>> .r77
                                 <td>
 
                                     <select class="form-control select2" id="get_service"  name="service_list[]">
@@ -389,19 +369,9 @@ $("#expiry_date").datepicker();
 $('.select2').select2();
 
 </script>
-<script>
-        /* JS for Uploader */
-        $(function() {
-            /* Append More Input Files */
-            $('#anc_add_more').click(function() {
-                $('#spn_inputs').append(' <input type="file" id="upload_attachment" name="upload_attachment[]"><br>');
-            });
-        });
-
-    </script>
 <!-- <style type="text/css">
     .select2-results ul li {
     background-color: red;
 }
 }
-</style>
+</style> -->

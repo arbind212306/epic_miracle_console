@@ -1,26 +1,26 @@
-Content Wrapper. Contains page content -->
+<!--Content Wrapper. Contains page content -->
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Service Manager
+           Add Contract
             <!--<small>Preview</small>-->
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <!--<li><a href="#">Forms</a></li>-->
-            <li class="active">Service Manager</li>
+            <li class="active">Add Contract</li>
         </ol>
     </section>
     <!-- Main content -->
     <section class="content">
         <!-- SELECT2 EXAMPLE -->
-         <?= $this->Form->create(''); ?>
+         <?= $this->Form->create('',array('enctype'=>'multipart/form-data')); ?>
         
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Add Service</h3>
+                <h3 class="box-title"></h3>
 
                 <!--          <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -201,15 +201,15 @@ Content Wrapper. Contains page content -->
                         <div class="form-group">
                 <label>Upload Contract</label>
 
-                <input type="file" name="">
+                <input type="file" name="image[]">
                 </div>
               
                 <div id='spn_inputs'>
             <div class="input-append">
               <div class="uneditable-input span3" ><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div>
-              <span class="btn btn-file"><span class="fileupload-new"></span><span class="fileupload-exists"></span>
+              <!-- <span class="btn btn-file"><span class="fileupload-new"></span><span class="fileupload-exists"></span>
                <input type="file" id="upload_attachment" name="upload_attachment[]">
-             <!--  </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>  --></div>
+              </span> --></div>
               
              </div> 
                     </div>
@@ -231,7 +231,7 @@ Content Wrapper. Contains page content -->
                       <div class="row">
                        <div class="box-body con-fixed-div">
                             <table class="table table-bordered scroll"  width="100%" id="service-table">
-                              <tbody id="appendServiceTr">
+                              <tbody>
                                 <tr>
                                     <th style="">Service Name</th>
                                     <th>Apply</th>
@@ -246,16 +246,11 @@ Content Wrapper. Contains page content -->
                                     <th>Bill Start Date</th>
                                     <th style="">Action</th>
                               </tr>
-<<<<<<< .mine
-<!--                              <tr id="appendServiceTr" styel=""></tr>-->
-                              <tr id="hideServiectTr">
-=======
 </tbody>
                               <!--<td id="appendServiceTr" ></td> -->
                               <tbody id="appendServiceTr">
                               <!-- <tr id="hideServiectTr" >
 
->>>>>>> .r77
                                 <td>
 
                                     <select class="form-control select2" id="get_service"  name="service_list[]">
@@ -393,12 +388,23 @@ $('.select2').select2();
         /* JS for Uploader */
         $(function() {
             /* Append More Input Files */
+            var counter = 1;
             $('#anc_add_more').click(function() {
-                $('#spn_inputs').append(' <input type="file" id="upload_attachment" name="upload_attachment[]"><br>');
+                $('#spn_inputs').append(' <input type="file" id="upload_attachment_'+counter+'" name="image[]"><input type ="button" value="Remove" style="margin-left: 20%;margin-top: -48px;" class="btn btn-primary" id="upload_remove_'+counter+'" onclick="return removetag(' + counter + ');" ><br>');
+                counter ++;
+
             });
+
+
+
         });
 
-    </script>
+function removetag(counter)
+{
+ $('#upload_attachment_' + counter).remove();  
+ $('#upload_remove_' + counter).remove(); 
+}
+ </script>
 <!-- <style type="text/css">
     .select2-results ul li {
     background-color: red;

@@ -8,16 +8,28 @@
       </h1>
       
       <div class="box box-primary">
-     <div class="row">
+          <div class="row">
           <div class="box-header with-border">
               <div class="col-md-9 col-sm-12 col-xs-12">
-              <h2 class="box-title" style="margin-left: 10px;margin-top: 5px;">View Databases</h2>
+              <h2 class="box-title" style="margin-left: 10px;margin-top: 5px;">View Database Configuration</h2>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
-                  <a href="<?= $this->Url->build(['controller' => 'admin', 'action' => 'addDb']) ?>" class="btn btn-primary" style="margin-left: 10px;">
+                  <a href="<?= $this->Url->build(['controller' => 'admin', 'action' => 'addDatabaseConfiguration']) ?>" class="btn btn-primary" style="margin-left: 10px;">
               <i class="fa fa-plus fa-fw"></i>Add</a>
               </div>
-                     <div class="col-xs-12 margin-top-lg ">
+            </div>
+          </div>
+          
+     <!-- Main content -->
+    <!-- <section class="content">
+            <div class="box box-primary">
+      <div class="row">
+          <div class="box-header with-border">
+              <h3 class="box-title" style="margin-left: 10px;">View clients</h3>
+            </div>
+          </div>
+        </section> -->
+        <div class="col-xs-12 margin-top-lg ">
                 <?php echo $this->Form->create(null, ['url' => false]); ?>
                 
             <table class="table table-striped" id="report_table" >
@@ -61,21 +73,8 @@
             <?php $this->Form->end(); ?>
 
         </div>
-        
-            </div>
-          </div>
-    
-
-     <!-- Main content -->
-    <!-- <section class="content">
-            <div class="box box-primary">
-      <div class="row">
-          <div class="box-header with-border">
-              <h3 class="box-title" style="margin-left: 10px;">View clients</h3>
-            </div>
-          </div>
-        </section> -->
- 
+    </div>
+	     
     <!-- /.content -->
 
   <!-- /.content-wrapper -->
@@ -348,7 +347,7 @@ function enableuser(id)
 
 
 $('#btnUpdate').click(function(event) {
-          //alert("User details updated");
+          alert("User details updated");
            var db_name = $('#db_name').val();
            var host_name =  $('#host_name').val();
            var username = $('#username').val();
@@ -371,7 +370,6 @@ $('#btnUpdate').click(function(event) {
     }, 
        success : function(data) {
           alert("Details Updated");
-         location.reload();
         
          // alert(data);
         },

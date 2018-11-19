@@ -231,7 +231,7 @@ Content Wrapper. Contains page content -->
                       <div class="row">
                        <div class="box-body con-fixed-div">
                             <table class="table table-bordered scroll"  width="100%" id="service-table">
-                              <tbody id="appendServiceTr">
+                              <tbody>
                                 <tr>
                                     <th style="">Service Name</th>
                                     <th>Apply</th>
@@ -246,16 +246,11 @@ Content Wrapper. Contains page content -->
                                     <th>Bill Start Date</th>
                                     <th style="">Action</th>
                               </tr>
-<<<<<<< .mine
-<!--                              <tr id="appendServiceTr" styel=""></tr>-->
-                              <tr id="hideServiectTr">
-=======
 </tbody>
                               <!--<td id="appendServiceTr" ></td> -->
                               <tbody id="appendServiceTr">
                               <!-- <tr id="hideServiectTr" >
 
->>>>>>> .r77
                                 <td>
 
                                     <select class="form-control select2" id="get_service"  name="service_list[]">

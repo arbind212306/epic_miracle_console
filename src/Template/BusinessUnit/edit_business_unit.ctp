@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\BusinessUnit $businessUnit
+ */
+?>
 
 
 <!-- header section ends here -->
@@ -18,7 +24,7 @@
             <div class="box box-primary">
              <!-- <form action="" name="myForm"  method="post" enctype = "multipart/form-data" onsubmit="return(validate());"> -->
                    <div class="box-header with-border">
-            <h3 class="box-title text-center col-md-10" style="">Add Business Unit</h3>
+              <h3 class="box-title text-center" style="margin-left: 10px;">Edit Business Unit</h3>
             </div> 
       <div class="row">
           <?php $flash_message = $this->Flash->render() ?>
@@ -26,7 +32,7 @@
     <div class="col-md-10 col-sm-12 col-xs-12">
     <div class="alert alert-success alert-dismissible" style="text-align:center;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Business Unit has been  successfully inserted.</h4>
+                <h4><i class="icon fa fa-check"></i> Business Unit has been  successfully updated.</h4>
                </div>
               </div>
        
@@ -36,7 +42,6 @@
        <?= $this->Form->create($businessUnit) ?>
         <!-- left column -->
        <div class="col-md-12 " >
-            <div class="col-md-3 col-sm-3"></div>
         <div class="col-md-5 col-xs-12 col-sm-5">
           <!-- general form elements -->
       
@@ -46,34 +51,47 @@
 			  <div class="form-group">
                   <label for="bu_name">Bu Name</label>
 		
-                    <input type="text" id="bu_name"  name="bu_name" class="form-control"  placeholder="">
+                  <input type="text" id="bu_name"  name="bu_name" class="form-control"  placeholder="" value="<?= $businessUnit->bu_name ; ?>">
                 <span class="error_label" id="check_bu_name"></span>
                           </div>
 						  
 						   <div class="form-group">
                   <label for="description">Bu Desc</label>
-                  <textarea   name="bu_desc" class="form-control" id="bu_desc" placeholder=""></textarea>
+                  <textarea   name="bu_desc" class="form-control" id="bu_desc" ><?= $businessUnit->bu_desc ; ?></textarea>
                   <span class="error_label" id="check_bu_desc"></span>
                 </div>
             
             <div class="form-group">
                   <label for="status">Status</label>
                 <div class="form-group">
-                
+               <?php //echo $this->Form->control('status',(['name'=>'status','class'=>'form-control','id'=>'status']));?>
                   <select class="form-control" name="status" id="status">
-                     
+                     <?php $status=$businessUnit->status ;       
+                    ?>
+                     <?php  if($status == '1') { ?>
                     <option value="1">Active</option>
+                     <option value="0">Inactive</option>
+                     <?php } else {?>
                     <option value="0">Inactive</option>
+                     <option value="1">Active</option>
+                   <?php } ?>
                    
                   </select>
                     <span class="error_label" id="check_status"></span>
                 </div>
                 </div>
+						  
+						  
 				
+				
+           
+            
+             
+          
         </div>
         <!--/.col (left) -->
        
-        <div class="col-md-11">
+        <div class="col-md-8">
         <div class="box-footer text-center">
                 <button type="submit" name="submit" id="myForm" class="btn btn-primary" >Submit</button>
               </div>
@@ -150,4 +168,6 @@ if($('#bu_name').val()=='')
                    color:red;   
          }
         </style>
+
+
 
